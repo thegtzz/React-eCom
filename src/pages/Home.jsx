@@ -3,14 +3,17 @@ import {Categories, PizzaBlock, SortPopUp} from "../components";
 
 
 export const Home = ({items}) => {
-    console.log(items)
     return (
         <div className="container">
             <div className="content__top">
                 <Categories
                     items={['Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые']}
                 />
-                <SortPopUp items={['популярности', 'цене', 'алфавиту']}/>
+                <SortPopUp items={[
+                    {name: 'популярности', type: 'popular'},
+                    {name: 'цене', type: 'price'},
+                    {name: 'алфавиту', type: 'alphabet'}
+                    ]}/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
