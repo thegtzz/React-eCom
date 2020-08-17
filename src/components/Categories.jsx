@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, {number} from "prop-types";
+import PropTypes from "prop-types";
 
 export const Categories = React.memo(function Categories({items, onSelectCategory, activeCategory}) {
     return (

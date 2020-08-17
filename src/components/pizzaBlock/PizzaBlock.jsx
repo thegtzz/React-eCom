@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import classNames from 'classnames'
 import PropTypes, {number} from 'prop-types'
+import {Button} from "../index";
 
 
-export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
+export const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, onClickAddPizza, cartPizzas }) => {
     const availableTypes = ['тонкое', 'традиционное']
     const availableSizes = [26, 30, 40]
     const [activeType, setActiveType] = useState(types[0])
@@ -13,8 +14,20 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
         setActiveType(index)
     }
 
-    const onSelectSize = (size) => {
-        setActiveSize(size)
+    const onSelectSize = (index) => {
+        setActiveSize(index)
+    }
+    console.log(activeSize)
+    const onAddPizza = () => {
+        const obj = {
+            id,
+            name,
+            imageUrl,
+            price,
+            size: activeSize,
+            type: availableTypes[activeType]
+        }
+        onClickAddPizza(obj)
     }
 
     return (
@@ -38,7 +51,7 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                         </ul>
                         <ul>
                             {availableSizes.map((size, index) => (
-                                <li key={size}
+                                <li key={index}
                                     onClick={() => onSelectSize(size)}
                                     className={classNames({
                                         'active': activeSize === size,
@@ -49,7 +62,7 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                     </div>
                     <div className="pizza-block__bottom">
                         <div className="pizza-block__price">от {price} ₽</div>
-                        <div className="button button--outline button--add">
+                        <Button onClick={onAddPizza} className='button--add' outline>
                             <svg
                                 width="12"
                                 height="12"
@@ -63,8 +76,8 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
                                 />
                             </svg>
                             <span>Добавить</span>
-                            <i>2</i>
-                        </div>
+                            {cartPizzas && <i>{cartPizzas}</i>}
+                        </Button>
                     </div>
                 </div>
     )
@@ -75,7 +88,9 @@ PizzaBlock.propTypes = {
     imageUrl: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     types: PropTypes.arrayOf(number),
-    sizes: PropTypes.arrayOf(number)
+    sizes: PropTypes.arrayOf(number),
+    onAddPizza: PropTypes.func,
+    cartPizzas: PropTypes.number
 }
 
 PizzaBlock.defaultProps = {
