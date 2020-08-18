@@ -50,7 +50,7 @@ export const Home = () => {
                 { isLoading
                     ? items.map(obj => <PizzaBlock
                         onClickAddPizza={handleAddPizzaToCart}
-                        cartPizzas={cartItems[obj.id] && cartItems[obj.id].length}
+                        cartPizzas={cartItems[obj.id] && cartItems[obj.id].items.length}
                         {...obj}
                         key={obj.id}/>)
                     : Array(10)

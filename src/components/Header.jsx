@@ -23,7 +23,7 @@ export const Header = () => {
                 <div className="header__cart">
                     <Button>
                         <Link to={'/cart'} className="button button--cart">
-                            <span>{totalPrice}</span>
+                            <span>{totalPrice} ₽</span>
                             <div className="button__delimiter"/>
                             <svg
                                 width="18"

@@ -17,7 +17,7 @@ export const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, onClickAdd
     const onSelectSize = (index) => {
         setActiveSize(index)
     }
-    console.log(activeSize)
+
     const onAddPizza = () => {
         const obj = {
             id,
